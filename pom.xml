@@ -113,14 +113,21 @@
                         <filtering>false</filtering>
                     </resource>
                     <!-- 把放在根目录下的脚本文件.sh,.bat拷贝到bin目录中 -->
-                    <resource>
-                        <directory>.</directory>
-                        <includes>
-                            <include>**/*.sh</include>
-                            <include>**/*.bat</include>
-                        </includes>
-                        <targetPath>${project.build.directory}/bin</targetPath>
-                    </resource>
+                    <!--<resource>-->
+                        <!--<directory>.</directory>-->
+                        <!--<includes>-->
+                            <!--<include>**/*.sh</include>-->
+                            <!--<include>**/*.bat</include>-->
+                        <!--</includes>-->
+                        <!--<targetPath>${project.build.directory}/bin</targetPath>-->
+                    <!--</resource>-->
+                        <resource>
+                            <directory>src/main/java</directory>
+                            <filtering>false</filtering>
+                            <excludes>
+                                <exclude>**/*.java</exclude>
+                            </excludes>
+                        </resource>
                 </resources>
             </build>
         </profile>
@@ -170,6 +177,15 @@
                     </descriptors>
                     <outputDirectory>${project.build.directory}/dist/</outputDirectory>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -187,9 +203,6 @@
                             <Class-Path>resources/</Class-Path>
                         </manifestEntries>
                     </archive>
-                    <excludes>
-                        <exclude>*.java</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
         </plugins>
