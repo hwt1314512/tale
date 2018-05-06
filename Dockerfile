@@ -8,4 +8,4 @@ WORKDIR /data/tale/
 
 VOLUME  /data/logs/tale 
 
-CMD java -jar tale-1.1.0.jar  > /data/logs/tale/bootstrap.log 2>&1
+CMD java ${JAVA_OPTS}  -jar tale-1.1.0.jar  > /data/logs/tale/bootstrap.log 2>&1
